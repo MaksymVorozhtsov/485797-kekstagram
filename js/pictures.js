@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-  "use strict";
   var photos = [];
   var getRandom = function (min, max) {
     var randomLikes = Math.floor(Math.random() * (max - min)) + min;
