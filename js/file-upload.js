@@ -15,7 +15,7 @@
   document.addEventListener('keydown', function(evt) {
     if (evt.keyCode === ESC_KEYCODE || evt.keyCode === ENTER_KEYCODE) {
       popUpClose(imageUploadPopup, 'hidden');
-    } 
+    }
   });
   var scalePin = document.querySelector('.scale__pin');
   var scalePinMouseup = function (filterClass) {
@@ -43,13 +43,13 @@
   var imagePreviewDefaultClasses = imagePreview.classList.value;
   var addingFilter = function (filterClass) {
     imagePreview.classList.value = imagePreviewDefaultClasses;
-    if (filterClass != 'effects__preview--none') {
+    if (filterClass !== 'effects__preview--none') {
       scaleElement.classList.remove('visually-hidden');
     } else {
       scaleElement.classList.add('visually-hidden');
     }
     imagePreview.classList.add(filterClass);
-  }
+  };
   var filterNoneButton = document.getElementById('effect-none');
   var filterChromeButton = document.getElementById('effect-chrome');
   var filterSepiaButton = document.getElementById('effect-sepia');

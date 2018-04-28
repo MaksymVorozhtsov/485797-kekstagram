@@ -67,12 +67,12 @@
         }
         commentElement.appendChild(fragment);
         popUpOpen(bigPictureElement, 'visually-hidden');
-        });
-        clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
-          if (evt.keyCode === ENTER_KEYCODE) {
-            popUpOpen(bigPictureElement, 'visually-hidden');
-          }
-        });
+      });
+      clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
+        if (evt.keyCode === ENTER_KEYCODE) {
+          popUpOpen(bigPictureElement, 'visually-hidden');
+        }
+      });
     })();
   }
   var pictureCloseButton = document.getElementById('picture-cancel');
