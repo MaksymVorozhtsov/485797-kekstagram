@@ -80,4 +80,30 @@
     addingFilter('effects__preview--heat');
     scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--heat'));
   });
+  var imageSizeValueField = document.querySelector('.resize__control--value');
+  var imageSizeValue = 100;
+  imageSizeValueField.value = imageSizeValue + '%';
+  var imageSizePlusButton = document.querySelector('.resize__control--plus');
+  var imageSizeMinusButton = document.querySelector('.resize__control--minus');
+  var imagePreviewImg = document.querySelector('.img-upload__preview--img');
+  imageSizeMinusButton.addEventListener('click', function () {
+    if (imageSizeValue >= 50) {
+      imageSizeValue = imageSizeValue - 25;
+      var imageSizeValueScale = imageSizeValue / 100;
+      imagePreviewImg.style.transform = 'scale(' + imageSizeValueScale + ')';
+    } else {
+      imageSizeValue = imageSizeValue - 0;
+    }
+    imageSizeValueField.value = imageSizeValue + '%';
+  });
+  imageSizePlusButton.addEventListener('click', function () {
+    if (imageSizeValue < 100) {
+      imageSizeValue = imageSizeValue + 25;
+      var imageSizeValueScale = imageSizeValue / 100;
+      imagePreviewImg.style.transform = 'scale(' + imageSizeValueScale + ')';
+    } else {
+      imageSizeValue = imageSizeValue + 0;
+    }
+    imageSizeValueField.value = imageSizeValue + '%';
+  });
 }());
