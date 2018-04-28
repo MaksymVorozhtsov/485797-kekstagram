@@ -134,7 +134,7 @@
       </section>
     </section>
 
-    <section class="big-picture overlay">
+    <section class="big-picture overlay visually-hidden">
       <h2 class="big-picture__title visually-hidden">Просмотр фотографии</h2>
       <div class="big-picture__preview">
 
@@ -159,7 +159,7 @@
             <button type="button" class="social__footer-btn" name="button">Отправить</button>
           </div>
         </div>
-        <button type="reset" class="big-picture__cancel cancel" id="picture-cancel">Закрыть</button>
+        <button type="reset" class="big-picture__cancel cancel" id="picture-cancel" tabindex="0">Закрыть</button>
       </div>
     </section>
 
@@ -190,7 +190,7 @@
   </footer>
 
   <template id="picture">
-    <a href="#" class="picture__link">
+    <a href="#" class="picture__link" tabindex="0">
       <img class="picture__img" src="" width="182" height="182" alt="Случайная фотография">
       <p class="picture__stats">
         <span class="picture__stat picture__stat--comments"></span>
@@ -199,6 +199,9 @@
     </a>
   </template>
 
+  <script src="js/functions.js"></script>
   <script src="js/pictures.js"></script>
+  <script src="js/file-upload.js"></script>
+  <script src="js/form-validation.js"></script>
 </body>
 </html>
