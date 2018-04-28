@@ -12,7 +12,7 @@
   imageUploadPopupClose.addEventListener('click', function () {
     popUpClose(imageUploadPopup, 'hidden');
   });
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ESC_KEYCODE || evt.keyCode === ENTER_KEYCODE) {
       popUpClose(imageUploadPopup, 'hidden');
     }
