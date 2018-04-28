@@ -51,37 +51,37 @@
   var clickablePhotos = document.querySelectorAll('.picture__link');
   for (var p = 0; p < clickablePhotos.length; p++) {
     var clickablePhotoElement = (function () {
-    var currentPhotoElement = p;
-    clickablePhotos[currentPhotoElement].addEventListener('click', function () {
-      bigPictureElement.querySelector('.big-picture__img img').src = photos[currentPhotoElement].url;
-      bigPictureElement.querySelector('.likes-count').textContent = photos[currentPhotoElement].likes;
-      bigPictureElement.querySelector('.comments-count').textContent = photos[currentPhotoElement].comments.length;
-      var commentElement = document.querySelector('.social__comments');
-      var fragment = document.createDocumentFragment();
-      for (var z = 0; z < photos[currentPhotoElement].comments.length; z++) {
-        var getAvatarNumber = getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
-        var newComment = document.createElement('li');
-        newComment.className = 'social__comment social__comment--text';
-        newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + photos[currentPhotoElement].comments[z];
-        fragment.appendChild(newComment);
-      }
-      commentElement.appendChild(fragment);
-      popUpOpen(bigPictureElement, 'visually-hidden');
-      });
-      clickablePhotos[currentPhotoElement].addEventListener('keydown', function(evt) {
-        if (evt.keyCode === ENTER_KEYCODE) {
-          popUpOpen(bigPictureElement, 'visually-hidden');
+      var currentPhotoElement = p;
+      clickablePhotos[currentPhotoElement].addEventListener('click', function () {
+        bigPictureElement.querySelector('.big-picture__img img').src = photos[currentPhotoElement].url;
+        bigPictureElement.querySelector('.likes-count').textContent = photos[currentPhotoElement].likes;
+        bigPictureElement.querySelector('.comments-count').textContent = photos[currentPhotoElement].comments.length;
+        var commentElement = document.querySelector('.social__comments');
+        var fragment = document.createDocumentFragment();
+        for (var z = 0; z < photos[currentPhotoElement].comments.length; z++) {
+          var getAvatarNumber = getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
+          var newComment = document.createElement('li');
+          newComment.className = 'social__comment social__comment--text';
+          newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + photos[currentPhotoElement].comments[z];
+          fragment.appendChild(newComment);
         }
-      });
+        commentElement.appendChild(fragment);
+        popUpOpen(bigPictureElement, 'visually-hidden');
+        });
+        clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
+          if (evt.keyCode === ENTER_KEYCODE) {
+            popUpOpen(bigPictureElement, 'visually-hidden');
+          }
+        });
     })();
   }
   var pictureCloseButton = document.getElementById('picture-cancel');
   pictureCloseButton.addEventListener('click', function () {
-    popUpClose(bigPictureElement, 'visually-hidden')
+    popUpClose(bigPictureElement, 'visually-hidden');
   });
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ESC_KEYCODE || evt.keyCode === ENTER_KEYCODE) {
       popUpClose(bigPictureElement, 'visually-hidden');
-    } 
+    }
   });
 }());
