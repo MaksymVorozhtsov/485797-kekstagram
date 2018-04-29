@@ -46,7 +46,7 @@
   var bigPictureElement = document.querySelector('.big-picture');
   var clickablePhotos = document.querySelectorAll('.picture__link');
   for (var p = 0; p < clickablePhotos.length; p++) {
-    var clickablePhotoElement = (function () {
+    (function () {
       var currentPhotoElement = p;
       clickablePhotos[currentPhotoElement].addEventListener('click', function () {
         bigPictureElement.querySelector('.big-picture__img img').src = photos[currentPhotoElement].url;
