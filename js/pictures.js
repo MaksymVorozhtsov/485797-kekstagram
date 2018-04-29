@@ -14,10 +14,6 @@
   var AVATAR_MIN_NUM = 1;
   var AVATAR_MAX_NUM = 6;
   var photos = [];
-  var getRandom = function (min, max) {
-    var randomNum = Math.floor(Math.random() * (max - min)) + min;
-    return randomNum;
-  };
   var comments = [];
   var getRandomComments = function (randomCommentsNum, randomCommentsVersion) {
     for (var i = 0; i < randomCommentsNum; i++) {

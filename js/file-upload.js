@@ -58,27 +58,39 @@
   var filterHeatButton = document.getElementById('effect-heat');
   filterNoneButton.addEventListener('click', function () {
     addingFilter('effects__preview--none');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--none'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--none');
+    });
   });
   filterChromeButton.addEventListener('click', function () {
     addingFilter('effects__preview--chrome');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--chrome'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--chrome');
+    });
   });
   filterSepiaButton.addEventListener('click', function () {
     addingFilter('effects__preview--sepia');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--sepia'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--sepia');
+    });
   });
   filterMarvinButton.addEventListener('click', function () {
     addingFilter('effects__preview--marvin');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--marvin'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--marvin');
+    });
   });
   filterPhobosButton.addEventListener('click', function () {
     addingFilter('effects__preview--phobos');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--phobos'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--phobos');
+    });
   });
   filterHeatButton.addEventListener('click', function () {
     addingFilter('effects__preview--heat');
-    scalePin.addEventListener('mouseup', scalePinMouseup('effects__preview--heat'));
+    scalePin.addEventListener('mouseup', function () {
+      scalePinMouseup('effects__preview--heat');
+    });
   });
   var imageSizeValueField = document.querySelector('.resize__control--value');
   var imageSizeValue = 100;
