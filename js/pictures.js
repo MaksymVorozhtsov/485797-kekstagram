@@ -44,15 +44,18 @@
     pictureElement.appendChild(newPhoto);
   }
   var bigPictureElement = document.querySelector('.big-picture');
+  var bigPictureElementLikes = bigPictureElement.querySelector('.likes-count');
+  var bigPictureElementImg = bigPictureElement.querySelector('.big-picture__img img');
+  var bigPictureElementCommentCount = bigPictureElement.querySelector('.comments-count');
+  var commentElement = document.querySelector('.social__comments');
   var clickablePhotos = document.querySelectorAll('.picture__link');
   for (var p = 0; p < clickablePhotos.length; p++) {
     (function () {
       var currentPhotoElement = p;
       clickablePhotos[currentPhotoElement].addEventListener('click', function () {
-        bigPictureElement.querySelector('.big-picture__img img').src = photos[currentPhotoElement].url;
-        bigPictureElement.querySelector('.likes-count').textContent = photos[currentPhotoElement].likes;
-        bigPictureElement.querySelector('.comments-count').textContent = photos[currentPhotoElement].comments.length;
-        var commentElement = document.querySelector('.social__comments');
+        bigPictureElementImg.src = photos[currentPhotoElement].url;
+        bigPictureElementLikes.textContent = photos[currentPhotoElement].likes;
+        bigPictureElementCommentCount.textContent = photos[currentPhotoElement].comments.length;
         var fragment = document.createDocumentFragment();
         for (var z = 0; z < photos[currentPhotoElement].comments.length; z++) {
           var getAvatarNumber = getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
@@ -76,7 +79,12 @@
     popUpClose(bigPictureElement, 'visually-hidden');
   });
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE || evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      popUpClose(bigPictureElement, 'visually-hidden');
+    }
+  });
+  pictureCloseButton.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       popUpClose(bigPictureElement, 'visually-hidden');
     }
   });
