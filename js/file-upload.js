@@ -13,8 +13,17 @@
     popUpClose(imageUploadPopup, 'hidden');
   });
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE || evt.keyCode === ENTER_KEYCODE) {
-      popUpClose(imageUploadPopup, 'hidden');
+    if (document.activeElement !== commentInput) {
+      if (document.activeElement !== hashtagInput) {
+        if (evt.keyCode === ESC_KEYCODE) {
+          popUpClose(imageUploadPopup, 'visually-hidden');
+        }
+      }
+    }
+  });
+  imageUploadPopupClose.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
   var scalePin = document.querySelector('.scale__pin');
@@ -118,4 +127,44 @@
     }
     imageSizeValueField.value = imageSizeValue + '%';
   });
+  var HASHTAGLENGTHLIMIT = 20;
+  var HASHTAGCOUNTLIMIT = 5;
+  var imageUploadForm = document.querySelector('.img-upload__form');
+  var hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+  hashtagInput.addEventListener('input', function (evt) {
+    var hashtags = hashtagInput.value.split(' ');
+    for (var h = 0; h < hashtags.length; h++) {
+      for (var hh = h+1; hh < hashtags.length; hh++) {
+        if (hashtags[h] === hashtags[hh]) {
+          hashtagInput.setCustomValidity('Хэштег не должен повторяться');
+        }
+      }
+      if (hashtags[h] && hashtags[h][0] !== '#') {
+        hashtagInput.setCustomValidity('Хэштег должен начинаться с #');
+      } else if (hashtags.length > HASHTAGCOUNTLIMIT) {
+        hashtagInput.setCustomValidity('Хэштегов не может быть больше пяти');
+      } else if (hashtags[h].value === '#') {
+        hashtagInput.setCustomValidity('Хэштег не может состоять из одной решетки');
+      } else if (hashtags[h].length > HASHTAGLENGTHLIMIT) {
+        hashtagInput.setCustomValidity('Хэштег не может быть длинее 20 символов');
+      } else {
+          hashtagInput.setCustomValidity('');
+      }
+    }
+  });
+  var COMMENTLENGTHLIMIT = 140;
+  var commentInput = imageUploadForm.querySelector('.text__description');
+  commentInput.addEventListener('input', function (evt) {
+    if (commentInput.value.length > COMMENTLENGTHLIMIT) {
+      commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
+    } else {
+        hashtagInput.setCustomValidity('');
+    }
+  });
+
+
+
+
+
+
 }());
