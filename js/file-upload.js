@@ -134,7 +134,7 @@
   hashtagInput.addEventListener('input', function (evt) {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
-      for (var hh = h+1; hh < hashtags.length; hh++) {
+      for (var hh = h + 1; hh < hashtags.length; hh++) {
         if (hashtags[h] === hashtags[hh]) {
           hashtagInput.setCustomValidity('Хэштег не должен повторяться');
         }
@@ -148,7 +148,7 @@
       } else if (hashtags[h].length > HASHTAGLENGTHLIMIT) {
         hashtagInput.setCustomValidity('Хэштег не может быть длинее 20 символов');
       } else {
-          hashtagInput.setCustomValidity('');
+        hashtagInput.setCustomValidity('');
       }
     }
   });
@@ -158,7 +158,7 @@
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
     } else {
-        hashtagInput.setCustomValidity('');
+      hashtagInput.setCustomValidity('');
     }
   });
 }());
