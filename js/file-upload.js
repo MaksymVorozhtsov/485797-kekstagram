@@ -161,10 +161,4 @@
         hashtagInput.setCustomValidity('');
     }
   });
-
-
-
-
-
-
 }());
