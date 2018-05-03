@@ -12,13 +12,12 @@
   imageUploadPopupClose.addEventListener('click', function () {
     popUpClose(imageUploadPopup, 'hidden');
   });
+  var imageUploadForm = document.querySelector('.img-upload__form');
+  var hashtagInput = document.querySelector('.text__hashtags');
+  var commentInput = document.querySelector('.text__description');
   document.addEventListener('keydown', function (evt) {
-    if (document.activeElement !== commentInput) {
-      if (document.activeElement !== hashtagInput) {
-        if (evt.keyCode === ESC_KEYCODE) {
-          popUpClose(imageUploadPopup, 'visually-hidden');
-        }
-      }
+    if (evt.keyCode === ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+      popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
   imageUploadPopupClose.addEventListener('keydown', function (evt) {
@@ -179,8 +178,8 @@
   });
   var HASHTAGLENGTHLIMIT = 20;
   var HASHTAGCOUNTLIMIT = 5;
-  var imageUploadForm = document.querySelector('.img-upload__form');
-  var hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+  
+  
   hashtagInput.addEventListener('input', function (evt) {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
@@ -203,7 +202,6 @@
     }
   });
   var COMMENTLENGTHLIMIT = 140;
-  var commentInput = imageUploadForm.querySelector('.text__description');
   commentInput.addEventListener('input', function (evt) {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
