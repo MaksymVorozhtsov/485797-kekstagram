@@ -55,6 +55,9 @@
   var effectsElement = document.querySelector('.effects__list');
   effectsElement.addEventListener('change', function (evt) {
     currentFilter = evt.target.value;
+    currentScale = 1;
+    scalePin.style.left = SLIDER_WIDTH + 'px';
+    scaleLevel.style.width = '100%';
     setFilter(currentScale, currentFilter);
   });
   scalePin.addEventListener('mousedown', function (evt) {
