@@ -1,28 +1,30 @@
 'use strict';
 (function () {
+  var PINSTART = 440;
+  var PINEND = 895;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
   var scaleValue = document.querySelector('.scale__value');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
   imageUploadInput.addEventListener('change', function () {
-    popUpOpen(imageUploadPopup, 'hidden');
+    window.functions.popUpOpen(imageUploadPopup, 'hidden');
   });
   var imageUploadPopupClose = document.getElementById('upload-cancel');
   imageUploadPopupClose.addEventListener('click', function () {
-    popUpClose(imageUploadPopup, 'hidden');
+    window.functions.popUpClose(imageUploadPopup, 'hidden');
   });
   var imageUploadForm = document.querySelector('.img-upload__form');
-  var hashtagInput = document.querySelector('.text__hashtags');
-  var commentInput = document.querySelector('.text__description');
+  var hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+  var commentInput = imageUploadForm.querySelector('.text__description');
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
-      popUpClose(imageUploadPopup, 'visually-hidden');
+    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+      window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
   imageUploadPopupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      popUpClose(imageUploadPopup, 'visually-hidden');
+    if (evt.keyCode === window.ENTER_KEYCODE) {
+      window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
   var scalePin = document.querySelector('.scale__pin');
@@ -30,6 +32,7 @@
   var imagePreviewDefaultClasses = imagePreview.classList.value;
   var addingFilter = function (filterClass) {
     scalePin.style.left = '100%';
+    scaleValue.value = 100;
     imagePreview.classList.value = imagePreviewDefaultClasses;
     if (filterClass !== 'effects__preview--none') {
       scaleElement.classList.remove('visually-hidden');
@@ -49,7 +52,8 @@
       imagePreview.style.filter = 'brightness(3)';
     } else {
       imagePreview.style.filter = 'none';
-      opacityLevel = 0;
+      scaleValue.value = 0;
+      var opacityLevel = 0;
     }
   };
   var filterNoneButton = document.getElementById('effect-none');
@@ -66,13 +70,11 @@
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
       var shift = {
-        x: startCoords.x - moveEvt.clientX,
+        x: startCoords.x - moveEvt.clientX
       };
       startCoords = {
-        x: moveEvt.clientX,
+        x: moveEvt.clientX
       };
-      var PINSTART = 440;
-      var PINEND = 895;
       if (startCoords.x < PINSTART) {
         startCoords.x = PINSTART;
         scalePin.style.left = 0 + '%';
@@ -82,8 +84,8 @@
       } else {
         scalePin.style.left = (scalePin.offsetLeft - shift.x) + 'px';
       }
-      console.log(startCoords.x);
       var opacityLevel = (startCoords.x - PINSTART) / (PINEND - PINSTART);
+      scaleValue.value = opacityLevel * 100;
       if (filterClass === 'effects__preview--chrome') {
         imagePreview.style.filter = 'grayscale(' + opacityLevel + ')';
       } else if (filterClass === 'effects__preview--sepia') {
@@ -99,6 +101,7 @@
         imagePreview.style.filter = 'brightness(' + opacityLevelBrightness + ')';
       } else {
         imagePreview.style.filter = 'none';
+        scaleValue.value = 0;
         opacityLevel = 0;
       }
     };
@@ -110,7 +113,6 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   }
-  
   filterNoneButton.addEventListener('click', function () {
     addingFilter('effects__preview--none');
     scalePin.addEventListener('mousedown', function (evt) {
@@ -178,8 +180,6 @@
   });
   var HASHTAGLENGTHLIMIT = 20;
   var HASHTAGCOUNTLIMIT = 5;
-  
-  
   hashtagInput.addEventListener('input', function (evt) {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
