@@ -1,9 +1,10 @@
 'use strict';
 (function () {
+  var HASHTAGLENGTHLIMIT = 20;
+  var HASHTAGCOUNTLIMIT = 5;
   var COMMENTLENGTHLIMIT = 140;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
-  var scaleValue = document.querySelector('.scale__value');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
   imageUploadInput.addEventListener('change', function () {
