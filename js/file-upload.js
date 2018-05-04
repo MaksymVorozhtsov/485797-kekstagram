@@ -1,5 +1,9 @@
 'use strict';
 (function () {
+  var SLIDER_WIDTH = 450;
+  var HASHTAGLENGTHLIMIT = 20;
+  var HASHTAGCOUNTLIMIT = 5;
+  var COMMENTLENGTHLIMIT = 140;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
   var scaleValue = document.querySelector('.scale__value');
@@ -16,12 +20,12 @@
   var hashtagInput = document.querySelector('.text__hashtags');
   var commentInput = document.querySelector('.text__description');
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
       window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
   imageUploadPopupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.ENTER_KEYCODE) {
       window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
@@ -37,7 +41,7 @@
       case 'chrome': return 'grayscale(' + scale + ')';
       case 'sepia': return 'sepia(' + scale + ')';
       case 'marvin': return 'invert(' + (scale * 100) + '%)';
-      case 'phobos': return 'blur(' + (scale * 3) + ')';
+      case 'phobos': return 'blur(' + (scale * 3) + 'px)';
       case 'heat': return 'brightness(' + (scale * 3) + ')';
       default: return 'none';
     }
@@ -52,63 +56,11 @@
     }
     imagePreview.style.filter = style;
   }
-      // if (filterClass === 'effects__preview--chrome') {
-      //   imagePreview.style.filter = 'grayscale(' + opacityLevel + ')';
-      // } else if (filterClass === 'effects__preview--sepia') {
-      //   imagePreview.style.filter = 'sepia(' + opacityLevel + ')';
-      // } else if (filterClass === 'effects__preview--marvin') {
-      //   var opacityLevelPerc = opacityLevel * 100;
-      //   imagePreview.style.filter = 'invert(' + opacityLevelPerc + '%)';
-      // } else if (filterClass === 'effects__preview--phobos') {
-      //   var opacityLevelBlur = opacityLevel * 3;
-      //   imagePreview.style.filter = 'blur(' + opacityLevelBlur + 'px)';
-      // } else if (filterClass === 'effects__preview--heat') {
-      //   var opacityLevelBrightness = opacityLevel * 3;
-      //   imagePreview.style.filter = 'brightness(' + opacityLevelBrightness + ')';
-      // } else {
-      //   imagePreview.style.filter = 'none';
-      //   opacityLevel = 0;
-      // }
-  // }
-  // var changeFilter = function (filter) {
-    // scalePin.style.left = '100%';
-    // imagePreview.classList.value = imagePreviewDefaultClasses;
-    // if (filterClass !== 'effects__preview--none') {
-    //   scaleElement.classList.remove('visually-hidden');
-    // } else {
-    //   scaleElement.classList.add('visually-hidden');
-    // }
-    // imagePreview.classList.add(filterClass);
-    // if (filterClass === 'effects__preview--chrome') {
-    //   imagePreview.style.filter = 'grayscale(1)';
-    // } else if (filterClass === 'effects__preview--sepia') {
-    //   imagePreview.style.filter = 'sepia(1)';
-    // } else if (filterClass === 'effects__preview--marvin') {
-    //   imagePreview.style.filter = 'invert(100%)';
-    // } else if (filterClass === 'effects__preview--phobos') {
-    //   imagePreview.style.filter = 'blur(3px)';
-    // } else if (filterClass === 'effects__preview--heat') {
-    //   imagePreview.style.filter = 'brightness(3)';
-    // } else {
-    //   imagePreview.style.filter = 'none';
-    //   opacityLevel = 0;
-    // }
-  // };
-  // var filterNoneButton = document.getElementById('effect-none');
-  // var filterChromeButton = document.getElementById('effect-chrome');
-  // var filterSepiaButton = document.getElementById('effect-sepia');
-  // var filterMarvinButton = document.getElementById('effect-marvin');
-  // var filterPhobosButton = document.getElementById('effect-phobos');
-  // var filterHeatButton = document.getElementById('effect-heat');
-
   var effectsElement = document.querySelector('.effects__list');
-  var SLIDER_WIDTH = 450;
-
   effectsElement.addEventListener('change', function(evt) {
     currentFilter = evt.target.value;
     setFilter(currentScale, currentFilter);
   });
-
   scalePin.addEventListener('mousedown', function (evt) {
     var startCoords = {
       x: evt.clientX
@@ -117,11 +69,9 @@
       var shift = {
         x: startCoords.x - moveEvt.clientX
       };
-
       startCoords = {
         x: moveEvt.clientX
       };
-
       var leftOffsetPin = scalePin.offsetLeft - shift.x;
       if (leftOffsetPin >= 0 && SLIDER_WIDTH >= leftOffsetPin) {
         currentScale = (leftOffsetPin / SLIDER_WIDTH);
@@ -130,110 +80,14 @@
         setFilter(currentScale, currentFilter);
       }
     };
-
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
-
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
-
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-
-  // var scalePinDrag = function (evt) {
-    // evt.preventDefault();
-    //   var startCoords = {
-    //     x: evt.clientX
-    //   };
-    // var onMouseMove = function (moveEvt) {
-    //   moveEvt.preventDefault();
-    //   var shift = {
-    //     x: startCoords.x - moveEvt.clientX,
-    //   };
-    //   startCoords = {
-    //     x: moveEvt.clientX,
-    //   };
-    //   var PINSTART = 440;
-    //   var PINEND = 895;
-    //   if (startCoords.x < PINSTART) {
-    //     startCoords.x = PINSTART;
-    //     scalePin.style.left = 0 + '%';
-    //   } else if (startCoords.x > PINEND) {
-    //     startCoords.x = PINEND;
-    //     scalePin.style.left = 100 + '%';
-    //   } else {
-    //     scalePin.style.left = (scalePin.offsetLeft - shift.x) + 'px';
-    //   }
-
-    //   var opacityLevel = (startCoords.x - PINSTART) / (PINEND - PINSTART);
-    //   if (filterClass === 'effects__preview--chrome') {
-    //     imagePreview.style.filter = 'grayscale(' + opacityLevel + ')';
-    //   } else if (filterClass === 'effects__preview--sepia') {
-    //     imagePreview.style.filter = 'sepia(' + opacityLevel + ')';
-    //   } else if (filterClass === 'effects__preview--marvin') {
-    //     var opacityLevelPerc = opacityLevel * 100;
-    //     imagePreview.style.filter = 'invert(' + opacityLevelPerc + '%)';
-    //   } else if (filterClass === 'effects__preview--phobos') {
-    //     var opacityLevelBlur = opacityLevel * 3;
-    //     imagePreview.style.filter = 'blur(' + opacityLevelBlur + 'px)';
-    //   } else if (filterClass === 'effects__preview--heat') {
-    //     var opacityLevelBrightness = opacityLevel * 3;
-    //     imagePreview.style.filter = 'brightness(' + opacityLevelBrightness + ')';
-    //   } else {
-    //     imagePreview.style.filter = 'none';
-    //     opacityLevel = 0;
-    //   }
-    // };
-    // var onMouseUp = function (upEvt) {
-    //   upEvt.preventDefault();
-    //   document.removeEventListener('mousemove', onMouseMove);
-    //   document.removeEventListener('mouseup', onMouseUp);
-    // };
-    // document.addEventListener('mousemove', onMouseMove);
-    // document.addEventListener('mouseup', onMouseUp);
-  // }
-  
-  // filterNoneButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--none');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--none');
-  //   // });
-  // });
-  // filterChromeButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--chrome');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--chrome');
-  //   // });
-  // });
-  // filterSepiaButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--sepia');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--sepia');
-  //   // });
-  // });
-  // filterMarvinButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--marvin');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--marvin');
-  //   // });
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--marvin');
-  //   // });
-  // });
-  // filterPhobosButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--phobos');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--phobos');
-  //   // });
-  // });
-  // filterHeatButton.addEventListener('click', function () {
-  //   addingFilter('effects__preview--heat');
-  //   // scalePin.addEventListener('mousedown', function (evt) {
-  //   //   scalePinDrag(evt, 'effects__preview--heat');
-  //   // });
-  // });
   var imageSizeValueField = document.querySelector('.resize__control--value');
   var imageSizeValue = 100;
   imageSizeValueField.value = imageSizeValue + '%';
@@ -260,10 +114,6 @@
     }
     imageSizeValueField.value = imageSizeValue + '%';
   });
-  var HASHTAGLENGTHLIMIT = 20;
-  var HASHTAGCOUNTLIMIT = 5;
-  
-  
   hashtagInput.addEventListener('input', function (evt) {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
@@ -285,7 +135,6 @@
       }
     }
   });
-  var COMMENTLENGTHLIMIT = 140;
   commentInput.addEventListener('input', function (evt) {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
