@@ -9,19 +9,19 @@
         var errorText;
         switch (xhr.status) {
           case 200:
-          onLoad(xhr.response);
-          break;
-        case 400:
-          errorText = 'Неверный запрос';
-          break;
-        case 401:
-          errorText = 'Пользователь не авторизован';
-          break;
-        case 404:
-          errorText = 'Ничего не найдено';
-          break;
-          default:
-        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+            onLoad(xhr.response);
+            break;
+          case 400:
+            errorText = 'Неверный запрос';
+            break;
+          case 401:
+            errorText = 'Пользователь не авторизован';
+            break;
+          case 404:
+            errorText = 'Ничего не найдено';
+            break;
+            default:
+            onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
         if (errorText) {
           onError(errorText);
