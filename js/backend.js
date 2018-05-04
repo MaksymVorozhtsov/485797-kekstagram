@@ -7,21 +7,21 @@
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
         var errorText;
-			  switch (xhr.status) {
-			    case 200:
-			    onLoad(xhr.response);
-				  break;
-          case 400:
-					errorText = 'Неверный запрос';
-					break;
-				case 401:
-					errorText = 'Пользователь не авторизован';
-					break;
-				case 404:
-					errorText = 'Ничего не найдено';
-					break;
-        default:
-          onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        switch (xhr.status) {
+          case 200:
+          onLoad(xhr.response);
+          break;
+        case 400:
+          errorText = 'Неверный запрос';
+          break;
+        case 401:
+          errorText = 'Пользователь не авторизован';
+          break;
+        case 404:
+          errorText = 'Ничего не найдено';
+          break;
+          default:
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
         if (errorText) {
           onError(errorText);
@@ -44,20 +44,20 @@
       xhr.addEventListener('load', function () {
         var errorText;
         switch (xhr.status) {
-        case 200:
-          onLoad();
-          break;
-        case 400:
-          errorText = 'Неверный запрос';
-          break;
-        case 401:
-          errorText = 'Пользователь не авторизован';
-          break;
-        case 404:
-          errorText = 'Ничего не найдено';
-          break;
-        default:
-          errorText = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
+          case 200:
+            onLoad();
+            break;
+          case 400:
+            errorText = 'Неверный запрос';
+            break;
+          case 401:
+            errorText = 'Пользователь не авторизован';
+            break;
+          case 404:
+            errorText = 'Ничего не найдено';
+            break;
+          default:
+            errorText = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
         }
         if (errorText) {
           onError(errorText);
