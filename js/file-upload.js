@@ -2,6 +2,9 @@
 (function () {
   var PINSTART = 440;
   var PINEND = 895;
+  var HASHTAGLENGTHLIMIT = 20;
+  var HASHTAGCOUNTLIMIT = 5;
+  var COMMENTLENGTHLIMIT = 140;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
   var scaleValue = document.querySelector('.scale__value');
@@ -177,30 +180,27 @@
     }
     imageSizeValueField.value = imageSizeValue + '%';
   });
-  var HASHTAGLENGTHLIMIT = 20;
-  var HASHTAGCOUNTLIMIT = 5;
   hashtagInput.addEventListener('input', function () {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
+      var hashtagsValue = hashtags[h].toLowerCase();
       for (var hh = h + 1; hh < hashtags.length; hh++) {
-        if (hashtags[h] === hashtags[hh]) {
+        if (hashtags[hh].toLowerCase() === hashtagsValue && hh !== h) {
           hashtagInput.setCustomValidity('Хэштег не должен повторяться');
+        } else if (hashtags[h] && hashtags[h][0] !== '#') {
+          hashtagInput.setCustomValidity('Хэштег должен начинаться с #');
+        } else if (hashtags.length > HASHTAGCOUNTLIMIT) {
+          hashtagInput.setCustomValidity('Хэштегов не может быть больше пяти');
+        } else if (hashtags[h].value === '#') {
+          hashtagInput.setCustomValidity('Хэштег не может состоять из одной решетки');
+        } else if (hashtags[h].length > HASHTAGLENGTHLIMIT) {
+          hashtagInput.setCustomValidity('Хэштег не может быть длинее 20 символов');
+        } else {
+          hashtagInput.setCustomValidity('');
         }
-      }
-      if (hashtags[h] && hashtags[h][0] !== '#') {
-        hashtagInput.setCustomValidity('Хэштег должен начинаться с #');
-      } else if (hashtags.length > HASHTAGCOUNTLIMIT) {
-        hashtagInput.setCustomValidity('Хэштегов не может быть больше пяти');
-      } else if (hashtags[h].value === '#') {
-        hashtagInput.setCustomValidity('Хэштег не может состоять из одной решетки');
-      } else if (hashtags[h].length > HASHTAGLENGTHLIMIT) {
-        hashtagInput.setCustomValidity('Хэштег не может быть длинее 20 символов');
-      } else {
-        hashtagInput.setCustomValidity('');
       }
     }
   });
-  var COMMENTLENGTHLIMIT = 140;
   commentInput.addEventListener('input', function () {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
