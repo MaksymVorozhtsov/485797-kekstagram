@@ -201,7 +201,7 @@
     }
   });
   var COMMENTLENGTHLIMIT = 140;
-  commentInput.addEventListener('input', function evt) {
+  commentInput.addEventListener('input', function () {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
     } else {
