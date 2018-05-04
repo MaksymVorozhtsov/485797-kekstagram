@@ -53,7 +53,6 @@
     } else {
       imagePreview.style.filter = 'none';
       scaleValue.value = 0;
-      var opacityLevel = 0;
     }
   };
   var filterNoneButton = document.getElementById('effect-none');
@@ -64,9 +63,9 @@
   var filterHeatButton = document.getElementById('effect-heat');
   var scalePinDrag = function (evt, filterClass) {
     evt.preventDefault();
-      var startCoords = {
-        x: evt.clientX
-      };
+    var startCoords = {
+      x: evt.clientX
+    };
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
       var shift = {
@@ -112,7 +111,7 @@
     };
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  }
+  };
   filterNoneButton.addEventListener('click', function () {
     addingFilter('effects__preview--none');
     scalePin.addEventListener('mousedown', function (evt) {
@@ -180,7 +179,7 @@
   });
   var HASHTAGLENGTHLIMIT = 20;
   var HASHTAGCOUNTLIMIT = 5;
-  hashtagInput.addEventListener('input', function (evt) {
+  hashtagInput.addEventListener('input', function () {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
       for (var hh = h + 1; hh < hashtags.length; hh++) {
@@ -202,7 +201,7 @@
     }
   });
   var COMMENTLENGTHLIMIT = 140;
-  commentInput.addEventListener('input', function (evt) {
+  commentInput.addEventListener('input', function evt) {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
     } else {

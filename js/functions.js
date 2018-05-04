@@ -13,5 +13,5 @@
       var randomNum = Math.floor(Math.random() * (max - min)) + min;
       return randomNum;
     }
-  }
+  };
 })();
