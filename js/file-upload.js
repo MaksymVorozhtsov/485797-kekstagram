@@ -17,8 +17,8 @@
     window.functions.popUpClose(imageUploadPopup, 'hidden');
   });
   var imageUploadForm = document.querySelector('.img-upload__form');
-  var hashtagInput = document.querySelector('.text__hashtags');
-  var commentInput = document.querySelector('.text__description');
+  var hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+  var commentInput = imageUploadForm.querySelector('.text__description');
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
       window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
@@ -114,7 +114,7 @@
     }
     imageSizeValueField.value = imageSizeValue + '%';
   });
-  hashtagInput.addEventListener('input', function (evt) {
+  hashtagInput.addEventListener('input', function () {
     var hashtags = hashtagInput.value.split(' ');
     for (var h = 0; h < hashtags.length; h++) {
       var hashtagsValue = hashtags[h].toLowerCase();
@@ -135,7 +135,7 @@
       }
     }
   });
-  commentInput.addEventListener('input', function (evt) {
+  commentInput.addEventListener('input', function () {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
     } else {
