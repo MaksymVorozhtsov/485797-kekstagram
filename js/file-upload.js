@@ -6,7 +6,6 @@
   var COMMENTLENGTHLIMIT = 140;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
-  var scaleValue = document.querySelector('.scale__value');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
   imageUploadInput.addEventListener('change', function () {
@@ -52,9 +51,9 @@
       scaleElement.classList.remove('visually-hidden');
     }
     imagePreview.style.filter = style;
-  }
+  };
   var effectsElement = document.querySelector('.effects__list');
-  effectsElement.addEventListener('change', function(evt) {
+  effectsElement.addEventListener('change', function (evt) {
     currentFilter = evt.target.value;
     setFilter(currentScale, currentFilter);
   });
