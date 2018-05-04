@@ -6,6 +6,7 @@
   var COMMENTLENGTHLIMIT = 140;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
+  var scaleValue = document.querySelector('.scale__value');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
   imageUploadInput.addEventListener('change', function () {
@@ -83,7 +84,6 @@
     };
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-    }
   });
   var imageSizeValueField = document.querySelector('.resize__control--value');
   var imageSizeValue = 100;
