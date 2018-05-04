@@ -20,7 +20,7 @@
           case 404:
             errorText = 'Ничего не найдено';
             break;
-            default:
+          default:
             onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
         if (errorText) {
