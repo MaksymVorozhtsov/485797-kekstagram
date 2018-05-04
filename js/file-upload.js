@@ -32,10 +32,8 @@
   var scalePin = document.querySelector('.scale__pin');
   var scaleLevel = document.querySelector('.scale__level');
   var imagePreview = document.querySelector('.img-upload__preview');
-  // var imagePreviewDefaultClasses = imagePreview.classList.value;
   var currentScale = 0;
   var currentFilter = 'none';
-
   var getCurrentFilter = function (scale, filter) {
     switch (filter) {
       case 'chrome': return 'grayscale(' + scale + ')';
@@ -46,7 +44,6 @@
       default: return 'none';
     }
   };
-
   var setFilter = function (scale, filter) {
     var style = getCurrentFilter(scale, filter);
     if (filter === 'none') {
