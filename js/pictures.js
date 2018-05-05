@@ -1,8 +1,5 @@
 'use strict';
 (function () {
-  var DESCRIPTION_VERSIONS = ['Тестим новую камеру!', 'Затусили с друзьями на море', 'Как же круто тут кормят', 'Отдыхаем...', 'Цените каждое мгновенье. Цените тех, кто рядом с вами и отгоняйте все сомненья. Не обижайте всех словами......', 'Вот это тачка!'];
-  var MIN_DESCRIPTION_NUMBER = 1;
-  var MAX_DESCRIPTION_NUMBER = 6;
   var AVATAR_MIN_NUM = 1;
   var AVATAR_MAX_NUM = 6;
   var imgFilters = document.querySelector('.img-filters');
@@ -16,16 +13,14 @@
       newPhoto.querySelector('.picture__stat--comments').textContent = photos[j].comments.length;
       pictureElement.appendChild(newPhoto);
     }
-    console.log('all img');
     imgFilters.classList.remove('img-filters--inactive');
-    console.log('menu');
-  }
+  };
   var photos = [];
-  var onLoad = function(data) {
+  var onLoad = function (data) {
     photos = data;
     renderPhotos(photos);
   };
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     window.requests.getData(onLoad);
   });
   setTimeout(function () {
