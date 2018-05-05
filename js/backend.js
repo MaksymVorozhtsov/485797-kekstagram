@@ -65,7 +65,7 @@
         }
         if (errorText !== '') {
           var errorMessage = document.querySelector('.errorMessage');
-          errorMessage.innerText = 'Ошибка: ' + errorText;
+          errorMessage.textContent = 'Ошибка: ' + errorText;
           errorMessage.style.display = 'flex';
           setTimeout(function () {
             errorMessage.style.display = 'none';

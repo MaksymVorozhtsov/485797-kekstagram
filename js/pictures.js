@@ -14,16 +14,6 @@
       pictureElement.appendChild(newPhoto);
     }
     imgFilters.classList.remove('img-filters--inactive');
-  };
-  var photos = [];
-  var onLoad = function (data) {
-    photos = data;
-    renderPhotos(photos);
-  };
-  document.addEventListener('DOMContentLoaded', function () {
-    window.requests.getData(onLoad);
-  });
-  setTimeout(function () {
     var bigPictureElement = document.querySelector('.big-picture');
     var bigPictureElementLikes = bigPictureElement.querySelector('.likes-count');
     var bigPictureElementImg = bigPictureElement.querySelector('.big-picture__img img');
@@ -69,5 +59,16 @@
         window.functions.popUpClose(bigPictureElement, 'visually-hidden');
       }
     });
-  }, 500);
+  };
+  var photos = [];
+  var onLoad = function (data) {
+    photos = data;
+    renderPhotos(photos);
+    console.log(photos);
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.requests.getData(onLoad);
+  });
+
+    
 }());
