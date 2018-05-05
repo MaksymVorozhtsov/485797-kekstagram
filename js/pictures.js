@@ -64,11 +64,8 @@
   var onLoad = function (data) {
     photos = data;
     renderPhotos(photos);
-    console.log(photos);
   };
   document.addEventListener('DOMContentLoaded', function () {
     window.requests.getData(onLoad);
   });
-
-    
 }());
