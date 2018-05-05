@@ -152,7 +152,7 @@
     }
   });
   imageUploadForm.addEventListener('submit', function (evt) {
-    window.requests.postData(new FormData(imageUploadForm), function (response) {
+    window.requests.postData(new FormData(imageUploadForm), function () {
       imageUploadPopup.classList.add('hidden');
     });
     evt.preventDefault();
