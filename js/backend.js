@@ -46,6 +46,7 @@
         switch (xhr.status) {
           case 200:
             onLoad();
+            errorText = '';
             break;
           case 400:
             errorText = 'Неверный запрос';
@@ -56,10 +57,19 @@
           case 404:
             errorText = 'Ничего не найдено';
             break;
+          case 500:
+            errorText = 'Неверный адрес сервера';
+            break;
           default:
             errorText = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
         }
-        if (errorText) {
+        if (errorText !== '') {
+          var errorMessage = document.querySelector('.errorMessage');
+          errorMessage.innerText = 'Ошибка: ' + errorText;
+          errorMessage.style.display = 'flex';
+          setTimeout(function () {
+            errorMessage.style.display = 'none';
+          }, 3000);
           onError(errorText);
         }
       });
