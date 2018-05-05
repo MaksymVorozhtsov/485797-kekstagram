@@ -4,6 +4,8 @@
   var HASHTAGLENGTHLIMIT = 20;
   var HASHTAGCOUNTLIMIT = 5;
   var COMMENTLENGTHLIMIT = 140;
+  var REDBORDER = '3px solid red';
+  var NORMALBORDER = '3px solid transparent';
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
@@ -120,16 +122,22 @@
       for (var hh = h + 1; hh < hashtags.length; hh++) {
         if (hashtags[hh].toLowerCase() === hashtagsValue && hh !== h) {
           hashtagInput.setCustomValidity('Хэштег не должен повторяться');
+          hashtagInput.style.border = REDBORDER;
         } else if (hashtags[h] && hashtags[h][0] !== '#') {
           hashtagInput.setCustomValidity('Хэштег должен начинаться с #');
+          hashtagInput.style.border = REDBORDER;
         } else if (hashtags.length > HASHTAGCOUNTLIMIT) {
           hashtagInput.setCustomValidity('Хэштегов не может быть больше пяти');
+          hashtagInput.style.border = REDBORDER;
         } else if (hashtags[h].value === '#') {
           hashtagInput.setCustomValidity('Хэштег не может состоять из одной решетки');
+          hashtagInput.style.border = REDBORDER;
         } else if (hashtags[h].length > HASHTAGLENGTHLIMIT) {
           hashtagInput.setCustomValidity('Хэштег не может быть длинее 20 символов');
+          hashtagInput.style.border = REDBORDER;
         } else {
           hashtagInput.setCustomValidity('');
+          hashtagInput.style.border = NORMALBORDER;
         }
       }
     }
@@ -137,8 +145,10 @@
   commentInput.addEventListener('input', function () {
     if (commentInput.value.length > COMMENTLENGTHLIMIT) {
       commentInput.setCustomValidity('Длина комментария не может быть больше 140 символов');
+      commentInput.style.border = REDBORDER;
     } else {
-      hashtagInput.setCustomValidity('');
+      commentInput.setCustomValidity('');
+      commentInput.style.border = NORMALBORDER;
     }
   });
 }());
