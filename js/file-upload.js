@@ -151,4 +151,10 @@
       commentInput.style.border = NORMALBORDER;
     }
   });
+  imageUploadForm.addEventListener('submit', function (evt) {
+    window.requests.postData(new FormData(form), function (response) {
+      imageUploadPopup.classList.add('hidden');
+    });
+    evt.preventDefault();
+  });
 }());
