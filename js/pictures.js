@@ -20,25 +20,28 @@
       var bigPictureElementCommentCount = bigPictureElement.querySelector('.comments-count');
       var commentElement = document.querySelector('.social__comments');
       var clickablePhotos = document.querySelectorAll('.picture__link');
+      var bigPictureRender = function (currentPhotoElement) {
+        bigPictureElementImg.src = photoArr[currentPhotoElement].url;
+        bigPictureElementLikes.textContent = photoArr[currentPhotoElement].likes;
+        bigPictureElementCommentCount.textContent = photoArr[currentPhotoElement].comments.length;
+        window.functions.removeOldComments();
+        var commentFragment = document.createDocumentFragment();
+        var currentPhotoComments = photoArr[currentPhotoElement].comments;
+        currentPhotoComments.forEach(function (thisComments) {
+          var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
+          var newComment = document.createElement('li');
+          newComment.className = 'social__comment social__comment--text';
+          newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + thisComments;
+          commentFragment.appendChild(newComment);
+        });
+        commentElement.appendChild(commentFragment);
+        window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
+      }
       for (var p = 0; p < clickablePhotos.length; p++) {
         (function () {
           var currentPhotoElement = p;
           clickablePhotos[currentPhotoElement].addEventListener('click', function () {
-            bigPictureElementImg.src = photoArr[currentPhotoElement].url;
-            bigPictureElementLikes.textContent = photoArr[currentPhotoElement].likes;
-            bigPictureElementCommentCount.textContent = photoArr[currentPhotoElement].comments.length;
-            window.functions.removeOldComments();
-            var commentFragment = document.createDocumentFragment();
-            var currentPhotoComments = photoArr[currentPhotoElement].comments;
-            currentPhotoComments.forEach(function (thisComments) {
-              var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
-              var newComment = document.createElement('li');
-              newComment.className = 'social__comment social__comment--text';
-              newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + thisComments;
-              commentFragment.appendChild(newComment);
-            });
-            commentElement.appendChild(commentFragment);
-            window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
+            bigPictureRender(currentPhotoElement);
           });
           clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
             if (evt.keyCode === window.ENTER_KEYCODE) {
