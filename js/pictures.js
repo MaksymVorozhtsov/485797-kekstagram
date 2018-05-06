@@ -29,7 +29,8 @@
             bigPictureElementCommentCount.textContent = photoArr[currentPhotoElement].comments.length;
             window.functions.removeOldComments();
             var commentFragment = document.createDocumentFragment();
-            photoArr[currentPhotoElement].comments.forEach(function (thisComments) {
+            var currentPhotoComments = photoArr[currentPhotoElement].comments;
+            currentPhotoComments.forEach(function (thisComments) {
               var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
               var newComment = document.createElement('li');
               newComment.className = 'social__comment social__comment--text';
