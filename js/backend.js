@@ -1,5 +1,6 @@
 'use strict';
 (function () {
+  var SERVER_RESPONSE_TIMEOUT = 10000;
   window.requests = {
     getData: function (onLoad, onError) {
       var URL = 'https://js.dump.academy/kekstagram/data';
@@ -36,7 +37,7 @@
       xhr.addEventListener('timeout', function () {
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
-      xhr.timeout = window.SERVER_RESPONSE_TIMEOUT;
+      xhr.timeout = SERVER_RESPONSE_TIMEOUT;
       xhr.open('GET', URL);
       xhr.send();
     },
