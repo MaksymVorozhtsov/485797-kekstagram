@@ -64,18 +64,22 @@
     photoAdding(photos);
     var imgFilters = document.querySelector('.img-filters');
     imgFilters.classList.remove('img-filters--inactive');
-    var buttonDefault = document.getElementById('filter-recomend');
+    
     var lastTimeout;
-    buttonDefault.addEventListener('click', function () {
+    var switchFilter = function (photoArr, id) {
       window.functions.removeOldPictures();
-      window.functions.setActiveButton('filter-recomend');
+      window.functions.setActiveButton(id);
       if (lastTimeout) {
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
       lastTimeout = window.setTimeout(function () {
-        photoAdding(photos);
+        photoAdding(photoArr);
       }, DEBOUNCE_TIMEOUT);
+    }
+    var buttonDefault = document.getElementById('filter-recomend');
+    buttonDefault.addEventListener('click', function () {
+      switchFilter(photos, 'filter-recomend');
     });
     var photosPopular = photos.slice();
     photosPopular.sort(function (first, second) {
@@ -83,15 +87,7 @@
     });
     var buttonPopular = document.getElementById('filter-popular');
     buttonPopular.addEventListener('click', function () {
-      window.functions.removeOldPictures();
-      window.functions.setActiveButton('filter-popular');
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-        lastTimeout = null;
-      }
-      lastTimeout = window.setTimeout(function () {
-        photoAdding(photosPopular);
-      }, DEBOUNCE_TIMEOUT);
+      switchFilter(photosPopular, 'filter-popular');
     });
     var photosComments = photos.slice();
     photosComments.sort(function (first, second) {
@@ -99,31 +95,15 @@
     });
     var buttonComments = document.getElementById('filter-discussed');
     buttonComments.addEventListener('click', function () {
-      window.functions.removeOldPictures();
-      window.functions.setActiveButton('filter-discussed');
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-        lastTimeout = null;
-      }
-      lastTimeout = window.setTimeout(function () {
-        photoAdding(photosComments);
-      }, DEBOUNCE_TIMEOUT);
+      switchFilter(photosComments, 'filter-discussed');
     });
     var photosRandom = photos.slice();
     var buttonRandom = document.getElementById('filter-random');
     buttonRandom.addEventListener('click', function () {
-      window.functions.removeOldPictures();
-      window.functions.setActiveButton('filter-random');
       photosRandom.sort(function () {
         return Math.random() - 0.5;
       });
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-        lastTimeout = null;
-      }
-      lastTimeout = window.setTimeout(function () {
-        photoAdding(photosRandom);
-      }, DEBOUNCE_TIMEOUT);
+      switchFilter(photosRandom, 'filter-random');
     });
   };
   var photos = [];
