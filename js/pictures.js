@@ -28,15 +28,15 @@
             bigPictureElementLikes.textContent = photoArr[currentPhotoElement].likes;
             bigPictureElementCommentCount.textContent = photoArr[currentPhotoElement].comments.length;
             window.functions.removeOldComments();
-            var fragment = document.createDocumentFragment();
-            for (var z = 0; z < photoArr[currentPhotoElement].comments.length; z++) {
+            var commentFragment = document.createDocumentFragment();
+            photoArr[currentPhotoElement].comments.forEach(function (thisComments) {
               var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
               var newComment = document.createElement('li');
               newComment.className = 'social__comment social__comment--text';
-              newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + photoArr[currentPhotoElement].comments[z];
-              fragment.appendChild(newComment);
-            }
-            commentElement.appendChild(fragment);
+              newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + thisComments;
+              commentFragment.appendChild(newComment);
+            });
+            commentElement.appendChild(commentFragment);
             window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
           });
           clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
