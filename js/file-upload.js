@@ -16,12 +16,12 @@
   });
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
-      window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
+      window.functions.popUpClose(imageUploadPopup, 'hidden');
     }
   });
   imageUploadPopupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.ENTER_KEYCODE) {
-      window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
+      window.functions.popUpClose(imageUploadPopup, 'hidden');
     }
   });
   var scalePin = document.querySelector('.scale__pin');
