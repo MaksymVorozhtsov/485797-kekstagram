@@ -7,13 +7,13 @@
     var pictureElement = document.querySelector('.pictures');
     var similarPicturesTemplate = document.querySelector('#picture').content;
     var photoAdding = function (photoArr) {
-      for (var j = 0; j < photoArr.length; j++) {
+      photoArr.forEach(function (photoArrElem) {
         var newPhoto = similarPicturesTemplate.cloneNode(true);
-        newPhoto.querySelector('.picture__img').src = photoArr[j].url;
-        newPhoto.querySelector('.picture__stat--likes').textContent = photoArr[j].likes;
-        newPhoto.querySelector('.picture__stat--comments').textContent = photoArr[j].comments.length;
+        newPhoto.querySelector('.picture__img').src = photoArrElem.url;
+        newPhoto.querySelector('.picture__stat--likes').textContent = photoArrElem.likes;
+        newPhoto.querySelector('.picture__stat--comments').textContent = photoArrElem.comments.length;
         pictureElement.appendChild(newPhoto);
-      }
+      });
       var bigPictureElement = document.querySelector('.big-picture');
       var bigPictureElementLikes = bigPictureElement.querySelector('.likes-count');
       var bigPictureElementImg = bigPictureElement.querySelector('.big-picture__img img');
