@@ -30,17 +30,17 @@
     },
     removeOldPictures: function () {
       var oldPictures = document.querySelectorAll('.picture__link');
-      for (var o = 0; o < oldPictures.length; o++) {
-        oldPictures[o].remove();
-      }
+      oldPictures.forEach(function (oldPicture) {
+        oldPicture.remove();
+      });
     },
     setActiveButton: function (id) {
       var activeButtons = document.querySelectorAll('.img-filters__button');
-      for (var a = 0; a < activeButtons.length; a++) {
-        if (activeButtons[a].classList.contains('img-filters__button--active')) {
-          activeButtons[a].classList.remove('img-filters__button--active');
+      activeButtons.forEach(function (activeButton) {
+        if (activeButton.classList.contains('img-filters__button--active')) {
+          activeButton.classList.remove('img-filters__button--active');
         }
-      }
+      });
       var activeButton = document.getElementById(id);
       activeButton.classList.add('img-filters__button--active');
     }
