@@ -39,19 +39,16 @@
         commentElement.appendChild(commentFragment);
         window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
       };
-      for (var p = 0; p < clickablePhotos.length; p++) {
-        (function () {
-          var currentPhotoElement = p;
-          clickablePhotos[currentPhotoElement].addEventListener('click', function () {
-            bigPictureRender(currentPhotoElement);
-          });
-          clickablePhotos[currentPhotoElement].addEventListener('keydown', function (evt) {
-            if (evt.keyCode === window.ENTER_KEYCODE) {
-              window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
-            }
-          });
-        })();
-      }
+      clickablePhotos.forEach(function (clickablePhoto, p) {
+        clickablePhoto.addEventListener('click', function () {
+          bigPictureRender(p);
+        });
+        clickablePhoto.addEventListener('keydown', function (evt) {
+          if (evt.keyCode === window.ENTER_KEYCODE) {
+            window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
+          }
+        });
+      });
       var pictureCloseButton = document.getElementById('picture-cancel');
       pictureCloseButton.addEventListener('click', function () {
         window.functions.popUpClose(bigPictureElement, 'visually-hidden');
