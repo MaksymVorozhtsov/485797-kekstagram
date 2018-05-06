@@ -71,13 +71,7 @@
     });
     var photosPopular = photos.slice();
     photosPopular.sort(function (first, second) {
-      if (first.likes < second.likes) {
-        return 1;
-      } else if (first.likes > second.likes) {
-        return -1;
-      } else {
-        return 0;
-      }
+      return second.likes - first.likes;
     });
     var buttonPopular = document.getElementById('filter-popular');
     buttonPopular.addEventListener('click', function () {
@@ -87,13 +81,7 @@
     });
     var photosComments = photos.slice();
     photosComments.sort(function (first, second) {
-      if (first.comments.length < second.comments.length) {
-        return 1;
-      } else if (first.comments.length > second.comments.length) {
-        return -1;
-      } else {
-        return 0;
-      }
+      return second.comments.length - first.comments.length;
     });
     var buttonComments = document.getElementById('filter-discussed');
     buttonComments.addEventListener('click', function () {
