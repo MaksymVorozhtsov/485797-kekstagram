@@ -36,7 +36,7 @@
         });
         commentElement.appendChild(commentFragment);
         window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
-      }
+      };
       for (var p = 0; p < clickablePhotos.length; p++) {
         (function () {
           var currentPhotoElement = p;
