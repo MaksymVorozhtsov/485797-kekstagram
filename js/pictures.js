@@ -65,6 +65,7 @@
     var imgFilters = document.querySelector('.img-filters');
     imgFilters.classList.remove('img-filters--inactive');
     var buttonDefault = document.getElementById('filter-recomend');
+    var lastTimeout;
     buttonDefault.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-recomend');
@@ -72,7 +73,7 @@
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
-      var lastTimeout = window.setTimeout(function () {
+      lastTimeout = window.setTimeout(function () {
         photoAdding(photos);
       }, DEBOUNCE_TIMEOUT);
     });
@@ -88,7 +89,7 @@
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
-      var lastTimeout = window.setTimeout(function () {
+      lastTimeout = window.setTimeout(function () {
         photoAdding(photosPopular);
       }, DEBOUNCE_TIMEOUT);
     });
@@ -104,7 +105,7 @@
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
-      var lastTimeout = window.setTimeout(function () {
+      lastTimeout = window.setTimeout(function () {
         photoAdding(photosComments);
       }, DEBOUNCE_TIMEOUT);
     });
@@ -120,7 +121,7 @@
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
-      var lastTimeout = window.setTimeout(function () {
+      lastTimeout = window.setTimeout(function () {
         photoAdding(photosRandom);
       }, DEBOUNCE_TIMEOUT);
     });
