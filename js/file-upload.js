@@ -5,6 +5,8 @@
   scaleElement.classList.add('visually-hidden');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
+  var hashtagInput = document.querySelector('.text__hashtags');
+  var commentInput = document.querySelector('.text__description');
   imageUploadInput.addEventListener('change', function () {
     window.functions.popUpOpen(imageUploadPopup, 'hidden');
   });
@@ -13,7 +15,7 @@
     window.functions.popUpClose(imageUploadPopup, 'hidden');
   });
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== window.commentInput && document.activeElement !== window.hashtagInput)) {
+    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
       window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
