@@ -13,7 +13,7 @@
     window.functions.popUpClose(imageUploadPopup, 'hidden');
   });
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+    if (evt.keyCode === window.ESC_KEYCODE && (document.activeElement !== window.commentInput && document.activeElement !== window.hashtagInput)) {
       window.functions.popUpClose(imageUploadPopup, 'visually-hidden');
     }
   });
