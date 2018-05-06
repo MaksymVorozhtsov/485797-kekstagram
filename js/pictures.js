@@ -2,6 +2,7 @@
 (function () {
   var AVATAR_MIN_NUM = 1;
   var AVATAR_MAX_NUM = 6;
+  var DEBOUNCE_TIMEOUT = 500;
   var renderPhotos = function (photos) {
     var pictureElement = document.querySelector('.pictures');
     var similarPicturesTemplate = document.querySelector('#picture').content;
@@ -67,7 +68,13 @@
     buttonDefault.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-recomend');
-      photoAdding(photos);
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+        lastTimeout = null;
+      }
+      var lastTimeout = window.setTimeout(function () {
+        photoAdding(photos);
+      }, DEBOUNCE_TIMEOUT);
     });
     var photosPopular = photos.slice();
     photosPopular.sort(function (first, second) {
@@ -77,7 +84,13 @@
     buttonPopular.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-popular');
-      photoAdding(photosPopular);
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+        lastTimeout = null;
+      }
+      var lastTimeout = window.setTimeout(function () {
+        photoAdding(photosPopular);
+      }, DEBOUNCE_TIMEOUT);
     });
     var photosComments = photos.slice();
     photosComments.sort(function (first, second) {
@@ -87,7 +100,13 @@
     buttonComments.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-discussed');
-      photoAdding(photosComments);
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+        lastTimeout = null;
+      }
+      var lastTimeout = window.setTimeout(function () {
+        photoAdding(photosComments);
+      }, DEBOUNCE_TIMEOUT);
     });
     var photosRandom = photos.slice();
     var buttonRandom = document.getElementById('filter-random');
@@ -97,7 +116,13 @@
       photosRandom.sort(function () {
         return Math.random() - 0.5;
       });
-      photoAdding(photosRandom);
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+        lastTimeout = null;
+      }
+      var lastTimeout = window.setTimeout(function () {
+        photoAdding(photosRandom);
+      }, DEBOUNCE_TIMEOUT);
     });
   };
   var photos = [];
