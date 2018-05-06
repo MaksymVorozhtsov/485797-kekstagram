@@ -15,6 +15,12 @@
       var randomNum = Math.floor(Math.random() * (max - min)) + min;
       return randomNum;
     },
+    removeOldComments: function () {
+      var oldComments = document.querySelectorAll('.social__comment');
+      for (var c = 0; c < oldComments.length; c++) {
+        oldComments[c].remove();
+      }
+    },
     showError: function (errorText) {
       var errorMessage = document.querySelector('.errorMessage');
       errorMessage.textContent = 'Ошибка: ' + errorText;

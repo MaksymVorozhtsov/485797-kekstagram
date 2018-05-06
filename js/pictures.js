@@ -26,6 +26,7 @@
             bigPictureElementImg.src = photoArr[currentPhotoElement].url;
             bigPictureElementLikes.textContent = photoArr[currentPhotoElement].likes;
             bigPictureElementCommentCount.textContent = photoArr[currentPhotoElement].comments.length;
+            window.functions.removeOldComments();
             var fragment = document.createDocumentFragment();
             for (var z = 0; z < photoArr[currentPhotoElement].comments.length; z++) {
               var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
