@@ -105,10 +105,9 @@
     buttonRandom.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-random');
-      var compareRandom = function (first) {
+      photosRandom.sort(function () {
         return Math.random() - 0.5;
-      };
-      photosRandom.sort(compareRandom);
+      });
       photoAdding(photosRandom);
     });
   };
