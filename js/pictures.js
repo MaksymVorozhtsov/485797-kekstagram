@@ -7,13 +7,15 @@
     var pictureElement = document.querySelector('.pictures');
     var similarPicturesTemplate = document.querySelector('#picture').content;
     var photoAdding = function (photoArr) {
+      var photoFragment = document.createDocumentFragment();
       photoArr.forEach(function (photoArrElem) {
         var newPhoto = similarPicturesTemplate.cloneNode(true);
         newPhoto.querySelector('.picture__img').src = photoArrElem.url;
         newPhoto.querySelector('.picture__stat--likes').textContent = photoArrElem.likes;
         newPhoto.querySelector('.picture__stat--comments').textContent = photoArrElem.comments.length;
-        pictureElement.appendChild(newPhoto);
+        photoFragment.appendChild(newPhoto);
       });
+      pictureElement.appendChild(photoFragment);
       var bigPictureElement = document.querySelector('.big-picture');
       var bigPictureElementLikes = bigPictureElement.querySelector('.likes-count');
       var bigPictureElementImg = bigPictureElement.querySelector('.big-picture__img img');
