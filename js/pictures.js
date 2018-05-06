@@ -66,6 +66,7 @@
     var buttonDefault = document.getElementById('filter-recomend');
     buttonDefault.addEventListener('click', function () {
       window.functions.removeOldPictures();
+      window.functions.setActiveButton('filter-recomend');
       photoAdding(photos);
     });
     var photosPopular = photos.slice();
@@ -81,6 +82,7 @@
     var buttonPopular = document.getElementById('filter-popular');
     buttonPopular.addEventListener('click', function () {
       window.functions.removeOldPictures();
+      window.functions.setActiveButton('filter-popular');
       photoAdding(photosPopular);
     });
     var photosComments = photos.slice();
@@ -96,12 +98,14 @@
     var buttonComments = document.getElementById('filter-discussed');
     buttonComments.addEventListener('click', function () {
       window.functions.removeOldPictures();
+      window.functions.setActiveButton('filter-discussed');
       photoAdding(photosComments);
     });
     var photosRandom = photos.slice();
     var buttonRandom = document.getElementById('filter-random');
     buttonRandom.addEventListener('click', function () {
       window.functions.removeOldPictures();
+      window.functions.setActiveButton('filter-random');
       var compareRandom = function (a, b) {
         return Math.random() - 0.5;
       }
