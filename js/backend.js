@@ -20,6 +20,9 @@
           case 404:
             errorText = 'Ничего не найдено';
             break;
+          case 500:
+            errorText = 'Неверный адрес сервера';
+            break;
           default:
             onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
@@ -63,13 +66,7 @@
           default:
             errorText = 'Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText;
         }
-        if (errorText !== '') {
-          var errorMessage = document.querySelector('.errorMessage');
-          errorMessage.textContent = 'Ошибка: ' + errorText;
-          errorMessage.style.display = 'flex';
-          setTimeout(function () {
-            errorMessage.style.display = 'none';
-          }, 3000);
+        if (errorText) {
           onError(errorText);
         }
       });
