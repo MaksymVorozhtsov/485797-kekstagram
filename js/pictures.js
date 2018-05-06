@@ -64,8 +64,6 @@
     photoAdding(photos);
     var imgFilters = document.querySelector('.img-filters');
     imgFilters.classList.remove('img-filters--inactive');
-    
-    var lastTimeout;
     var switchFilter = function (photoArr, id) {
       window.functions.removeOldPictures();
       window.functions.setActiveButton(id);
@@ -73,10 +71,10 @@
         window.clearTimeout(lastTimeout);
         lastTimeout = null;
       }
-      lastTimeout = window.setTimeout(function () {
+      var lastTimeout = window.setTimeout(function () {
         photoAdding(photoArr);
       }, DEBOUNCE_TIMEOUT);
-    }
+    };
     var buttonDefault = document.getElementById('filter-recomend');
     buttonDefault.addEventListener('click', function () {
       switchFilter(photos, 'filter-recomend');
