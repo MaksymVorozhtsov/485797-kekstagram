@@ -153,12 +153,12 @@
   });
   imageUploadForm.addEventListener('submit', function (evt) {
     var onSend = function () {
-        imageUploadPopup.classList.add('hidden');
+      imageUploadPopup.classList.add('hidden');
     };
     var onError = function (errorText) {
       window.functions.showError(errorText);
     };
     window.requests.postData(new FormData(imageUploadForm), onSend, onError);
     evt.preventDefault();
-});
+  });
 }());

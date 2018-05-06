@@ -36,7 +36,7 @@
       xhr.addEventListener('timeout', function () {
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
-      xhr.timeout = 10000;
+      xhr.timeout = window.SERVER_RESPONSE_TIMEOUT;
       xhr.open('GET', URL);
       xhr.send();
     },
@@ -76,7 +76,7 @@
       xhr.addEventListener('timeout', function () {
         onError('Время ожидания соединения исктекло.');
       });
-      xhr.timeout = 10000;
+      xhr.timeout = window.SERVER_RESPONSE_TIMEOUT;
       xhr.open('POST', URL);
       xhr.send(data);
     }

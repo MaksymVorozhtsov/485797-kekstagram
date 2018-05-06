@@ -2,6 +2,8 @@
 (function () {
   window.ESC_KEYCODE = 27;
   window.ENTER_KEYCODE = 13;
+  window.SERVER_RESPONSE_TIMEOUT = 10000;
+  var ERROR_POPUP_CLOSE_TIMEOUT = 3000;
   window.functions = {
     popUpOpen: function (element, elementClass) {
       element.classList.remove(elementClass);
@@ -19,7 +21,7 @@
       errorMessage.style.display = 'flex';
       setTimeout(function () {
         errorMessage.style.display = 'none';
-      }, 3000);
+      }, ERROR_POPUP_CLOSE_TIMEOUT);
     },
     removeOldPictures: function () {
       var oldPictures = document.querySelectorAll('.picture__link');

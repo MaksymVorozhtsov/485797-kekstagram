@@ -2,7 +2,6 @@
 (function () {
   var AVATAR_MIN_NUM = 1;
   var AVATAR_MAX_NUM = 6;
-  var photos = [];
   var renderPhotos = function (photos) {
     var pictureElement = document.querySelector('.pictures');
     var similarPicturesTemplate = document.querySelector('#picture').content;
@@ -71,7 +70,7 @@
     });
     var photosPopular = photos.slice();
     photosPopular.sort(function (first, second) {
-      if(first.likes < second.likes) {
+      if (first.likes < second.likes) {
         return 1;
       } else if (first.likes > second.likes) {
         return -1;
@@ -87,7 +86,7 @@
     });
     var photosComments = photos.slice();
     photosComments.sort(function (first, second) {
-      if(first.comments.length < second.comments.length) {
+      if (first.comments.length < second.comments.length) {
         return 1;
       } else if (first.comments.length > second.comments.length) {
         return -1;
@@ -106,13 +105,14 @@
     buttonRandom.addEventListener('click', function () {
       window.functions.removeOldPictures();
       window.functions.setActiveButton('filter-random');
-      var compareRandom = function (a, b) {
+      var compareRandom = function (first, second) {
         return Math.random() - 0.5;
-      }
+      };
       photosRandom.sort(compareRandom);
       photoAdding(photosRandom);
     });
   };
+  var photos = [];
   var onLoad = function (data) {
     photos = data;
     renderPhotos(photos);
