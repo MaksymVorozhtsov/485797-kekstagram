@@ -77,7 +77,7 @@
       xhr.addEventListener('timeout', function () {
         onError('Время ожидания соединения исктекло.');
       });
-      xhr.timeout = window.SERVER_RESPONSE_TIMEOUT;
+      xhr.timeout = SERVER_RESPONSE_TIMEOUT;
       xhr.open('POST', URL);
       xhr.send(data);
     }

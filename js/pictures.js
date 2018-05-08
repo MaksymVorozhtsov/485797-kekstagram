@@ -45,7 +45,7 @@
           bigPictureRender(p);
         });
         clickablePhoto.addEventListener('keydown', function (evt) {
-          if (evt.keyCode === window.ENTER_KEYCODE) {
+          if (evt.keyCode === window.constants.ENTER_KEYCODE) {
             window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
           }
         });
@@ -55,12 +55,12 @@
         window.functions.popUpClose(bigPictureElement, 'visually-hidden');
       });
       document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === window.ESC_KEYCODE) {
+        if (evt.keyCode === window.constants.ESC_KEYCODE) {
           window.functions.popUpClose(bigPictureElement, 'visually-hidden');
         }
       });
       pictureCloseButton.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === window.ENTER_KEYCODE) {
+        if (evt.keyCode === window.constants.ENTER_KEYCODE) {
           window.functions.popUpClose(bigPictureElement, 'visually-hidden');
         }
       });

@@ -1,8 +1,10 @@
 'use strict';
 (function () {
-  window.ESC_KEYCODE = 27;
-  window.ENTER_KEYCODE = 13;
   var ERROR_POPUP_CLOSE_TIMEOUT = 3000;
+  window.constants = {
+    ESC_KEYCODE: 27,
+    ENTER_KEYCODE: 13
+  }
   window.functions = {
     popUpOpen: function (element, elementClass) {
       element.classList.remove(elementClass);
