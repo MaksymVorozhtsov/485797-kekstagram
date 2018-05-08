@@ -33,7 +33,8 @@
           var getAvatarNumber = window.functions.getRandom(AVATAR_MAX_NUM, AVATAR_MIN_NUM);
           var newComment = document.createElement('li');
           newComment.className = 'social__comment social__comment--text';
-          newComment.innerHTML = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + thisComments;
+          var newCommentHtml = '<img class="social__picture" src="img/avatar-' + getAvatarNumber + '.svg" alt="Аватар комментатора фотографии" width="35" height="35">' + thisComments;
+          newComment.innerHTML = newCommentHtml;
           commentFragment.appendChild(newComment);
         });
         commentElement.appendChild(commentFragment);
