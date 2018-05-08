@@ -39,6 +39,9 @@
         });
         commentElement.appendChild(commentFragment);
         window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
+        clickablePhoto.removeEventListener('click', function () {
+          bigPictureRender(p);
+        });
       };
       clickablePhotos.forEach(function (clickablePhoto, p) {
         clickablePhoto.addEventListener('click', function () {

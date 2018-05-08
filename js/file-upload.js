@@ -40,22 +40,16 @@
     switch (filter) {
       case 'chrome':
         return 'grayscale(' + scale + ')';
-        break;
       case 'sepia':
         return 'sepia(' + scale + ')';
-        break;
       case 'marvin':
         return 'invert(' + (scale * INVERT_MULTIPLY) + '%)';
-        break;
       case 'phobos':
         return 'blur(' + (scale * BLUR_MULTIPLY) + 'px)';
-        break;
       case 'heat':
         return 'brightness(' + (scale * BRIGHTNESS_MULTIPLY) + ')';
-        break;
       default:
         return 'none';
-        break;
     }
   };
   var setFilter = function (scale, filter) {
