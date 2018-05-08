@@ -537,6 +537,8 @@ main {
 
   font-size: 0;
   border: 0;
+
+  z-index: 1;
 }
 
 .resize__control {

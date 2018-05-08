@@ -4,7 +4,7 @@
   window.constants = {
     ESC_KEYCODE: 27,
     ENTER_KEYCODE: 13
-  }
+  };
   window.functions = {
     popUpOpen: function (element, elementClass) {
       element.classList.remove(elementClass);
@@ -39,9 +39,7 @@
     setActiveButton: function (id) {
       var activeButtons = document.querySelectorAll('.img-filters__button');
       activeButtons.forEach(function (activeButton) {
-        if (activeButton.classList.contains('img-filters__button--active')) {
-          activeButton.classList.remove('img-filters__button--active');
-        }
+        activeButton.classList.remove('img-filters__button--active');
       });
       var activeButton = document.getElementById(id);
       activeButton.classList.add('img-filters__button--active');
