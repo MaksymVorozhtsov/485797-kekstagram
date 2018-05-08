@@ -31,12 +31,24 @@
   var currentFilter = 'none';
   var getCurrentFilter = function (scale, filter) {
     switch (filter) {
-      case 'chrome': return 'grayscale(' + scale + ')';
-      case 'sepia': return 'sepia(' + scale + ')';
-      case 'marvin': return 'invert(' + (scale * 100) + '%)';
-      case 'phobos': return 'blur(' + (scale * 3) + 'px)';
-      case 'heat': return 'brightness(' + (scale * 3) + ')';
-      default: return 'none';
+      case 'chrome': 
+        return 'grayscale(' + scale + ')';
+        break;
+      case 'sepia': 
+        return 'sepia(' + scale + ')';
+        break;
+      case 'marvin': 
+        return 'invert(' + (scale * 100) + '%)';
+        break;
+      case 'phobos': 
+        return 'blur(' + (scale * 3) + 'px)';
+        break;
+      case 'heat': 
+        return 'brightness(' + (scale * 3) + ')';
+        break;
+      default: 
+        return 'none';
+        break;
     }
   };
   var setFilter = function (scale, filter) {
