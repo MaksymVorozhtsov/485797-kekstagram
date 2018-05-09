@@ -10,26 +10,33 @@
   var BRIGHTNESS_MULTIPLY = 3;
   var scaleElement = document.querySelector('.img-upload__scale');
   scaleElement.classList.add('visually-hidden');
+  var imageUploadForm = document.querySelector('.img-upload__form');
   var imageUploadPopup = document.querySelector('.img-upload__overlay');
   var imageUploadInput = document.getElementById('upload-file');
   var hashtagInput = document.querySelector('.text__hashtags');
   var commentInput = document.querySelector('.text__description');
+  var imageUploadPopupClose = document.getElementById('upload-cancel');
   imageUploadInput.addEventListener('change', function () {
     window.functions.popUpOpen(imageUploadPopup, 'hidden');
-  });
-  var imageUploadPopupClose = document.getElementById('upload-cancel');
-  imageUploadPopupClose.addEventListener('click', function () {
-    window.functions.popUpClose(imageUploadPopup, 'hidden');
-  });
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.constants.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+    imageUploadPopupClose.addEventListener('click', function () {
       window.functions.popUpClose(imageUploadPopup, 'hidden');
-    }
-  });
-  imageUploadPopupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.constants.ENTER_KEYCODE) {
-      window.functions.popUpClose(imageUploadPopup, 'hidden');
-    }
+      imageUploadForm.reset();
+      imageUploadPopupClose.removeEventListener('click', window.functions.popUpClose);
+    });
+    document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === window.constants.ESC_KEYCODE && (document.activeElement !== commentInput && document.activeElement !== hashtagInput)) {
+        window.functions.popUpClose(imageUploadPopup, 'hidden');
+        imageUploadForm.reset();
+        document.removeEventListener('keydown', window.functions.popUpClose);
+      }
+    });
+    imageUploadPopupClose.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === window.constants.ENTER_KEYCODE) {
+        window.functions.popUpClose(imageUploadPopup, 'hidden');
+        imageUploadForm.reset();
+        imageUploadPopupClose.removeEventListener('keydown', window.functions.popUpClose);
+      }
+    });
   });
   var scalePin = document.querySelector('.scale__pin');
   var scaleLevel = document.querySelector('.scale__level');

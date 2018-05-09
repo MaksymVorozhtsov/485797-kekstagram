@@ -47,7 +47,8 @@
   var imageUploadForm = document.querySelector('.img-upload__form');
   imageUploadForm.addEventListener('submit', function (evt) {
     var onSend = function () {
-      imageUploadPopup.classList.add('hidden');
+      window.functions.popUpClose(imageUploadPopup, 'hidden');
+      imageUploadForm.reset();
     };
     var onError = function (errorText) {
       window.functions.showError(errorText);
