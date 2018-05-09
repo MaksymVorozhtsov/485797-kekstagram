@@ -3,6 +3,7 @@
   var AVATAR_MIN_NUM = 1;
   var AVATAR_MAX_NUM = 6;
   var DEBOUNCE_TIMEOUT = 500;
+  var pictureCloseButton = document.getElementById('picture-cancel');
   var renderPhotos = function (photos) {
     var pictureElement = document.querySelector('.pictures');
     var similarPicturesTemplate = document.querySelector('#picture').content;
@@ -43,27 +44,47 @@
       clickablePhotos.forEach(function (clickablePhoto, p) {
         clickablePhoto.addEventListener('click', function () {
           bigPictureRender(p);
+          pictureCloseButton.addEventListener('click', function () {
+            window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+            pictureCloseButton.removeEventListener('click', window.functions.popUpClose);
+          });
+          document.addEventListener('keydown', function (evt) {
+            if (evt.keyCode === window.constants.ESC_KEYCODE) {
+              window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+              document.removeEventListener('keydown', window.functions.popUpClose);
+            }
+          });
+          pictureCloseButton.addEventListener('keydown', function (evt) {
+            if (evt.keyCode === window.constants.ENTER_KEYCODE) {
+              window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+              pictureCloseButton.removeEventListener('keydown', window.functions.popUpClose);
+            }
+          });
         });
         clickablePhoto.addEventListener('keydown', function (evt) {
           if (evt.keyCode === window.constants.ENTER_KEYCODE) {
             window.functions.popUpOpen(bigPictureElement, 'visually-hidden');
+            pictureCloseButton.addEventListener('click', function () {
+              window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+              pictureCloseButton.removeEventListener('click', window.functions.popUpClose);
+            });
+            document.addEventListener('keydown', function (evt) {
+              if (evt.keyCode === window.constants.ESC_KEYCODE) {
+                window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+                document.removeEventListener('keydown', window.functions.popUpClose);
+              }
+            });
+            pictureCloseButton.addEventListener('keydown', function (evt) {
+              if (evt.keyCode === window.constants.ENTER_KEYCODE) {
+                window.functions.popUpClose(bigPictureElement, 'visually-hidden');
+                pictureCloseButton.removeEventListener('keydown', window.functions.popUpClose);
+              }
+            });
           }
         });
       });
-      var pictureCloseButton = document.getElementById('picture-cancel');
-      pictureCloseButton.addEventListener('click', function () {
-        window.functions.popUpClose(bigPictureElement, 'visually-hidden');
-      });
-      document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === window.constants.ESC_KEYCODE) {
-          window.functions.popUpClose(bigPictureElement, 'visually-hidden');
-        }
-      });
-      pictureCloseButton.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === window.constants.ENTER_KEYCODE) {
-          window.functions.popUpClose(bigPictureElement, 'visually-hidden');
-        }
-      });
+      
+      
     };
     photoAdding(photos);
     var imgFilters = document.querySelector('.img-filters');

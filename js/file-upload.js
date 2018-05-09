@@ -37,6 +37,7 @@
         imageUploadPopupClose.removeEventListener('keydown', window.functions.popUpClose);
       }
     });
+    imageUploadInput.removeEventListener('change', window.functions.popUpOpen);
   });
   var scalePin = document.querySelector('.scale__pin');
   var scaleLevel = document.querySelector('.scale__level');
