@@ -15,8 +15,8 @@
         var hashtagsValueMirr = hashtags[hh].toLowerCase();
         if (hashtagsValueMirr === hashtagsValue) {
           var repeatHashtag = true;
-        } 
-      };
+        }
+      }
       if (repeatHashtag) {
         hashtagInput.setCustomValidity('Хэштег не должен повторяться');
         hashtagInput.style.border = RED_BORDER;
@@ -36,7 +36,7 @@
         hashtagInput.setCustomValidity('');
         hashtagInput.style.border = NORMAL_BORDER;
       }
-    };
+    }
   });
   commentInput.addEventListener('input', function () {
     if (commentInput.value.length > COMMENT_LENGTH_LIMIT) {
