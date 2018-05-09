@@ -68,13 +68,13 @@
               window.functions.popUpClose(bigPictureElement, 'visually-hidden');
               pictureCloseButton.removeEventListener('click', window.functions.popUpClose);
             });
-            document.addEventListener('keydown', function (evt) {
+            document.addEventListener('keydown', function () {
               if (evt.keyCode === window.constants.ESC_KEYCODE) {
                 window.functions.popUpClose(bigPictureElement, 'visually-hidden');
                 document.removeEventListener('keydown', window.functions.popUpClose);
               }
             });
-            pictureCloseButton.addEventListener('keydown', function (evt) {
+            pictureCloseButton.addEventListener('keydown', function () {
               if (evt.keyCode === window.constants.ENTER_KEYCODE) {
                 window.functions.popUpClose(bigPictureElement, 'visually-hidden');
                 pictureCloseButton.removeEventListener('keydown', window.functions.popUpClose);
@@ -83,8 +83,6 @@
           }
         });
       });
-      
-      
     };
     photoAdding(photos);
     var imgFilters = document.querySelector('.img-filters');
